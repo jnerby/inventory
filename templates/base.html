@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Inventory</title>
+</head>
+<body>
+  {% for message in get_flashed_messages() %}
+  <div class=flashes>
+    <p>{{ message }}</p>
+  </div>
+  {% endfor %}
+
+  <h1>User Rewards</h1>
+
+  <div>
+    <h4>Add Item</h4>
+    <form id="add-form" action="/add" method="POST">
+        <input placeholder="Payer" class="form-control" autofocus required id="payer" name="payer">
+        <input placeholder="Points" class="form-control" required name="points">
+        <button class="btn btn-outline-secondary" type="submit">Add Points</button> 
+    </form>
+  </div>
+
+  <div>
+    <h4>View Inventoy</h4>
+    <form id="balance-form" action="/balance" method="POST">
+      <button class="btn btn-outline-secondary" type="submit">View Balances</button> 
+    </form>
+  </div>
+  
+</body>
+</html>
