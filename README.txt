@@ -21,3 +21,7 @@ Ability to assign/remove inventory items to a named group/collection
 
 to seed data, run psql inventory < inventory.sql
 Data from 1/21 and 2/21
+
+
+$ pip install -U Flask-SQLAlchemy
+

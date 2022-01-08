@@ -24,10 +24,10 @@ def edit_entry(to_edit_id, edited_product_name, edited_qty):
     """Edit inventory entry"""
     entry_to_edit = Entry.query.filter(Entry.entry_id==to_edit_id).first()
 
-    if edited_product_name is not "":
+    if edited_product_name != "":
         # get entry user wants to edit
         entry_to_edit.product_name = edited_product_name
-    if edited_qty is not "":
+    if edited_qty != "":
         entry_to_edit.qty = int(edited_qty)
     
     db.session.add(entry_to_edit)
