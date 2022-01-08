@@ -31,12 +31,14 @@ def add_inventory_item():
 
     return redirect('/')
 
+
 @app.route('/edit', methods=['POST'])
 def edit_inventory_item():
     """Edit an existing inventory item in db"""
     if request.method == 'POST':
+        # get entry_id of entry user wants to update
         to_edit = request.form['to_edit']
-        to_edit_id = to_edit.split('|')[0].strip()
+        to_edit_id = helpers.get_entry_id_from_string(to_edit)
 
         edited_product_name = request.form['product']
         edited_qty = request.form['qty']
@@ -45,14 +47,15 @@ def edit_inventory_item():
 
     return redirect('/')
 
+
 @app.route('/delete', methods=['POST'])
 def delete_inventory_item():
     """Delete existing inventory item from"""
     if request.method == 'POST':
-        to_edit = request.form['to_edit']
-        to_edit_id = to_edit.split('|')[0].strip()
+        to_delete = request.form['to_delete']
+        to_delete_id = helpers.get_entry_id_from_string(to_delete)
 
-        crud.delete_entry(to_edit_id)
+        crud.delete_entry(to_delete_id)
 
     return redirect('/')
 
@@ -68,26 +71,13 @@ def generate_monthly_inventory_report():
         # get month value from month name
         report_month = helpers.get_month_value(report_month_name)
 
-
-
         # get inventory items for requested month and year
         inventory_items = crud.get_inventory_by_month_year(report_month, report_year)
         
-        helpers.generate_report_csv(inventory_items, report_month_name, report_year)
-
-        # get 
-        # product_counts = helpers.get_product_and_qty(inventory_items)
-
-        # # create_dictionary_for_csv
-        # sorted_product_counts = helpers.sort_inventory_by_count(product_counts)
-
-        # max_min_in_stock = helpers.get_max_min_in_inventory(sorted_product_counts)
-
-
-        # max = max_min_in_stock[0]
-        # min = max_min_in_stock[1]
-
-
+        if inventory_items:
+            helpers.generate_report_csv(inventory_items, report_month_name, report_year)
+        else:
+            flash(f"No records for {report_month_name} {report_year}")
 
     return redirect('/')
 

@@ -12,21 +12,6 @@ def connect_to_db(flask_app, db_uri="postgresql:///inventory", echo=True):
 
     print("Connected to the db!")
 
-# class Product(db.Model):
-#     """A product to be stored in inventory"""
-
-#     __tablename__ = "products"
-
-#     product_id = db.Column(db.Integer,
-#                         primary_key=True,
-#                         autoincrement=True)
-#     product_name = db.Column(db.String(25))
-    
-
-#     entry = db.relationship("Entry", back_populates="product")
-
-#     def __repr__(self):
-#         return f"<Product name={self.product_name}>"
 
 class Entry(db.Model):
     """An entry in inventory"""
@@ -40,76 +25,10 @@ class Entry(db.Model):
                             nullable=False)
     qty = db.Column(db.Integer,
                     nullable=False)
-    # product_size = db.Column(db.String(10))
     timestamp = db.Column(db.DateTime)
 
     def __repr__(self):
         return f"<Entry product={self.product_name} qty={self.qty}>" 
-
-
-# class Deletion(db.Model):
-#     """An deleted entry from inventory"""
-
-#     __tablename__ = "deletions"
-
-#     deletion_id = db.Column(db.Integer,
-#                         primary_key=True,
-#                         autoincrement=True)
-#     entry_id = db.Column(db.Integer,
-#                     db.ForeignKey("entries.entry_id"),
-#                     nullable=False)
-#     deleted_timestamp = db.Column(db.DateTime)
-#     deleted_comments = db.Column(db.String(50))
-
-#     def __repr__(self):
-#         return f"<Deletion product={self.product_name} qty={self.qty}>" 
-
-    # product_id = db.Column(db.Integer,
-    #                 db.ForeignKey("products.product_id"),
-    #                 nullable=False)
-    # created_by = db.Column(db.Integer,
-    #                 db.ForeignKey("users.user_id"),
-    #                 nullable=False)
-
-    # product = db.relationship("Product", back_populates="entry")
-    # update = db.relationship("Update", back_populates="entry")
-
- 
-
-# class Update(db.Model):
-#     """An update to an inventory entry"""
-
-#     __tablename__ = "updates"
-
-#     update_id = db.Column(db.Integer,
-#                         primary_key=True,
-#                         autoincrement=True)
-#     entry_id = db.Column(db.Integer,
-#                     db.ForeignKey("entries.entry_id"),
-#                     nullable=False)
-#     updated_qty = db.Column(db.Integer)
-#     timestamp = db.Column(db.DateTime)
-    # created_by = db.Column(db.Integer,
-    #                 db.ForeignKey("users.user_id"),
-    #                 nullable=False)
-
-
-    # entry = db.relationship("Entry", back_populates="update")
-
-    # def __repr__(self):
-    #     return f"<Update update_id={self.update_id} qty={self.updated_qty}>" 
-
-# class User(db.Model):
-#     """A user"""
-#     __tablename__ = "users"
-
-#     user_id = db.Column(db.Integer,
-#                         primary_key=True,
-#                         autoincrement=True)
-#     username = db.Column(db.String(20))
-
-#     def __repr__(self):
-#         return f"<User user_id={self.user_id} username={self.username}>" 
 
 
 if __name__ == "__main__":

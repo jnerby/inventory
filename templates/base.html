@@ -38,7 +38,7 @@
 </div>
 <h4>Delete Inventory Item</h4>
 <form id="delete-form" action="/delete" method="POST">
-    <select name="to_edit">
+    <select name="to_delete">
       {% for item in all_inventory_items %}
         <option>{{ item.entry_id }} | {{ item.product_name }} | {{ item.qty }} | {{ item.timestamp }}</option>
       {% endfor %}
@@ -73,7 +73,7 @@
 
 
   <div>  
-    <h4>Inventory</h4>
+    <h4>View Inventory Entries</h4>
       <table>
         <tr>
           <th>Product</th>

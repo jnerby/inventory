@@ -15,3 +15,6 @@ additional feature = Ability to generate a report on inventory levels over time,
 Ability to assign/remove inventory items to a named group/collection
 
 * seed some data to the db
+
+to seed data, run psql inventory < inventory.sql
+Data from 1/21 and 2/21

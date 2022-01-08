@@ -1,22 +1,52 @@
 import os
 import csv
 
+
+def generate_dict_for_csv(inventory_items):
+    """Returns list of dictionaries with total qty per product to populate csv"""
+    list_of_dicts = []
+
+    # get total qty per product sorted from max to min
+    product_qty = get_product_and_qty(inventory_items)
+
+    # add each dictionary to list of dicts with product and quantity keys
+    for key, value in product_qty.items():
+        inner_dict = {}
+        
+        inner_dict['Product'] = key
+        inner_dict['Quantity'] = value
+
+        list_of_dicts.append(inner_dict)
+    
+    return list_of_dicts
+
+
 def generate_report_csv(inventory_items, report_month_name, report_year):
     """Generates CSV report with all inventory entries for month and year"""
+    # set path to current working dictionary
     path = os.getcwd()
     file_name = os.path.join(path, f"{report_month_name} {report_year} Inventory Report.csv")
-    fieldnames = ['Product', 'Quantity', 'Timestamp']
+    fieldnames = ['Product', 'Quantity']
 
-    inventory_items_list = get_inventory_items_dict(inventory_items)
+    # get dict of products and quantities sorted by quantity
+    inventory_items_list = generate_dict_for_csv(inventory_items)
 
     try:
         with open(file_name, 'w') as csv_file:
+            # add headers to csv
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
+            # add each product and quantity as rows to csv
             for data in inventory_items_list:
                 writer.writerow(data)
     except IOError:
         print('I/O Error')
+
+
+def get_entry_id_from_string(to_update):
+    """Return id of """
+    return to_update.split('|')[0].strip()
+
 
 def get_product_and_qty(inventory_items):
     """Returns dictionary with counts of each item in inventory"""
@@ -31,38 +61,8 @@ def get_product_and_qty(inventory_items):
         else:
             product_counts[product_name] = product_qty
 
-    return product_counts
-
-def create_dictionary_for_csv(product_counts):
-    result = []
-    for key, value in product_counts.items():
-        inner_dict = {}
-        inner_dict['Product'] = key
-        inner_dict['Quantity'] = value
-        result.append(inner_dict)
-
-    return result
-
-def get_inventory_items_dict(inventory_items):
-    """Returns list with all inventory entries as dictionaries"""
-    inventory_items_list = []
-    for item in inventory_items:
-        inner_dict = {}
-        inner_dict['Product'] = item.product_name
-        inner_dict['Quantity'] = item.qty
-        inner_dict['Timestamp'] = item.timestamp
-        inventory_items_list.append(inner_dict)
-
-    return inventory_items_list
-
-# def get_max_min_in_inventory(sorted_product_counts):
-#     """Returns most in-stock item"""
-#     # get list of sorted dict items
-#     lst = list(sorted_product_counts.items())
-#     max_in_stock = lst[0]
-#     min_in_stock = lst[-1]
-
-#     return (max_in_stock, min_in_stock)
+    # return dict of product counts sorted from max to min
+    return sort_inventory_by_count(product_counts)
 
 
 def get_month_value(report_month_name):

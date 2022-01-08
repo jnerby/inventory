@@ -8,12 +8,16 @@ def create_inventory_entry(qty, product_name):
     db.session.add(new_entry)
     db.session.commit()
 
+    return new_entry
+
 
 def delete_entry(to_delete_id):
     """Delete inventory entry"""
     entry_to_delete = Entry.query.filter(Entry.entry_id==to_delete_id).first()
     db.session.delete(entry_to_delete)
     db.session.commit()
+
+    return "Deleted"
 
 
 def edit_entry(to_edit_id, edited_product_name, edited_qty):
@@ -25,7 +29,6 @@ def edit_entry(to_edit_id, edited_product_name, edited_qty):
         entry_to_edit.product_name = edited_product_name
     if edited_qty is not "":
         entry_to_edit.qty = int(edited_qty)
-
     
     db.session.add(entry_to_edit)
     db.session.commit()
@@ -36,6 +39,7 @@ def edit_entry(to_edit_id, edited_product_name, edited_qty):
 def get_all_inventory_items():
     """Returns all entry objects"""
     return Entry.query.all()
+
 
 def get_inventory_by_month_year(report_month, report_year):
     """Return all inventory for a given month and year"""

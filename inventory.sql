@@ -68,27 +68,30 @@ ALTER TABLE ONLY public.entries ALTER COLUMN entry_id SET DEFAULT nextval('publi
 --
 
 COPY public.entries (entry_id, product_name, qty, "timestamp") FROM stdin;
-1	Men's Sweaters	500	2020-09-08 12:16:30.311548
-2	Men's T-Shirts	500	2020-08-08 12:16:38.152827
-3	Women's Maxi Dresses	5000	2021-04-08 12:17:01.426941
-4	Women's Bootcut Jeans	600	2021-02-08 12:15:57.925399
-5	Mens's Joggers	400	2021-02-08 12:15:57.925399
-6	Women's Wool Socks	400	2021-02-08 12:15:57.925399
+1	Men's Sweaters	500	2021-01-08 12:16:30.311548
+2	Men's T-Shirts	500	2021-01-08 12:16:38.152827
+3	Women's Maxi Dresses	5000	2021-01-08 12:17:01.426941
+4	Women's Bootcut Jeans	600	2021-01-08 12:15:57.925399
+5	Mens's Joggers	400	2021-01-08 12:15:57.925399
+6	Women's Wool Socks	400	2021-01-08 12:15:57.925399
 7	Women's Joggers	1000	2021-01-08 12:15:32.148166
 8	Women's Sweatshirts	1000	2021-01-08 12:15:40.037055
 9	Women's Bomber Jackets	3000	2021-01-08 12:15:49.610643
 10	Women's Chelsea Boots	400	2021-02-08 12:15:57.925399
 11	Women's Leggings	5000	2021-02-08 12:16:04.664318
-12	Men's Wool Socks	100	2021-03-08 12:16:09.363804
-13	Unisex Watches	1000	2021-04-08 12:16:14.112802
-14	Men's Joggers	3000	2021-06-08 12:16:24.649859
-15	Men's Sweaters	500	2020-07-08 12:16:30.311548
-16	Men's T-Shirts	500	2020-08-08 12:16:38.152827
-17	Women's T-Shirts	5000	2021-04-08 12:17:01.426941
+12	Men's Wool Socks	100	2021-02-08 12:16:09.363804
+13	Unisex Watches	1000	2021-02-08 12:16:14.112802
+14	Men's Joggers	3000	2021-02-08 12:16:24.649859
+15	Men's Sweaters	500	2020-02-08 12:16:30.311548
+16	Men's T-Shirts	500	2020-02-08 12:16:38.152827
+17	Women's T-Shirts	5000	2021-02-08 12:17:01.426941
 18	Women's Chelsea Boots	600	2021-02-08 12:15:57.925399
-19	Women's Joggers	400	2021-03-08 12:15:57.925399
+19	Women's Joggers	400	2021-02-08 12:15:57.925399
 20	Men's Wool Socks	400	2021-01-08 12:15:57.925399
 21	Women's Bomber Jackets	400	2021-02-08 12:15:57.925399
+22	Women's Bomber Jackets	600	2021-02-08 12:15:57.925399
+23	Women's Bomber Jackets	400	2021-02-08 12:15:57.925399
+24	Women's Bomber Jackets	600	2021-02-08 12:15:57.925399
 \.
 
 
