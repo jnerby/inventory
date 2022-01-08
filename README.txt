@@ -3,6 +3,7 @@ install git
 from terminal window, run git clone https://github.com/jnerby/inventory.git
 cd into directory
 run pip3 install requirements.txt
+pip3 install flask-sqlalchemy
 run python3 server.py
 
 given more time, would add a User class to the model and created_by fields to Entries and Updates tables. Use flask sessions to store the user_id of the logged in user to track who enters, edits, deletes inventory items.
