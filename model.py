@@ -39,51 +39,75 @@ class Entry(db.Model):
                             nullable=False)
     qty = db.Column(db.Integer,
                     nullable=False)
+    timestamp = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f"<Entry product={self.product_name} qty={self.qty}>" 
+
+
+# class Deletion(db.Model):
+#     """An deleted entry from inventory"""
+
+#     __tablename__ = "deletions"
+
+#     deletion_id = db.Column(db.Integer,
+#                         primary_key=True,
+#                         autoincrement=True)
+#     entry_id = db.Column(db.Integer,
+#                     db.ForeignKey("entries.entry_id"),
+#                     nullable=False)
+#     deleted_timestamp = db.Column(db.DateTime)
+#     deleted_comments = db.Column(db.String(50))
+
+#     def __repr__(self):
+#         return f"<Deletion product={self.product_name} qty={self.qty}>" 
+
     # product_id = db.Column(db.Integer,
     #                 db.ForeignKey("products.product_id"),
     #                 nullable=False)
-    timestamp = db.Column(db.DateTime)
+    # created_by = db.Column(db.Integer,
+    #                 db.ForeignKey("users.user_id"),
+    #                 nullable=False)
 
     # product = db.relationship("Product", back_populates="entry")
-    update = db.relationship("Update", back_populates="entry")
+    # update = db.relationship("Update", back_populates="entry")
 
-    def __repr__(self):
-        return f"<Entry product={self.product_id} qty={self.qty}>"    
+ 
 
-class Update(db.Model):
-    """An update to an inventory entry"""
+# class Update(db.Model):
+#     """An update to an inventory entry"""
 
-    __tablename__ = "updates"
+#     __tablename__ = "updates"
 
-    update_id = db.Column(db.Integer,
-                        primary_key=True,
-                        autoincrement=True)
-    entry_id = db.Column(db.Integer,
-                    db.ForeignKey("entries.entry_id"),
-                    nullable=False)
-    updated_qty = db.Column(db.Integer)
-    timestamp = db.Column(db.DateTime)
-    created_by = db.Column(db.Integer,
-                    db.ForeignKey("users.user_id"),
-                    nullable=False)
+#     update_id = db.Column(db.Integer,
+#                         primary_key=True,
+#                         autoincrement=True)
+#     entry_id = db.Column(db.Integer,
+#                     db.ForeignKey("entries.entry_id"),
+#                     nullable=False)
+#     updated_qty = db.Column(db.Integer)
+#     timestamp = db.Column(db.DateTime)
+    # created_by = db.Column(db.Integer,
+    #                 db.ForeignKey("users.user_id"),
+    #                 nullable=False)
 
 
-    entry = db.relationship("Entry", back_populates="update")
+    # entry = db.relationship("Entry", back_populates="update")
 
-    def __repr__(self):
-        return f"<Update update_id={self.update_id} qty={self.updated_qty}>" 
+    # def __repr__(self):
+    #     return f"<Update update_id={self.update_id} qty={self.updated_qty}>" 
 
-class User(db.Model):
-    """A user"""
-    __tablename__ = "users"
+# class User(db.Model):
+#     """A user"""
+#     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer,
-                        primary_key=True,
-                        autoincrement=True)
-    username = db.Column(db.String(20))
+#     user_id = db.Column(db.Integer,
+#                         primary_key=True,
+#                         autoincrement=True)
+#     username = db.Column(db.String(20))
 
-    def __repr__(self):
-        return f"<User user_id={self.user_id} username={self.username}>" 
+#     def __repr__(self):
+#         return f"<User user_id={self.user_id} username={self.username}>" 
 
 
 if __name__ == "__main__":

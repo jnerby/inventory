@@ -15,18 +15,58 @@
   <div>
     <h4>Create Inventory Item(s)</h4>
     <form id="add-form" action="/create" method="POST">
-        <input placeholder="Product" class="form-control" autofocus required name="product">
+        <input placeholder="Product" class="form-control" autofocus name="product">
         <input placeholder="Quantity" class="form-control" required name="qty">
         <button class="btn btn-outline-secondary" type="submit">Add</button> 
     </form>
   </div>
 
-  <div>
-    <h4>View Inventoy</h4>
-    <form id="balance-form" action="/balance" method="POST">
-      <button class="btn btn-outline-secondary" type="submit">View Balances</button> 
-    </form>
+{% if all_inventory_items %}
+<div>
+  <h4>Edit Inventory Item</h4>
+  <form id="edit-form" action="/edit" method="POST">
+      <select name="to_edit">
+        {% for item in all_inventory_items %}
+          <option>{{ item.entry_id }} | {{ item.product_name }} | {{ item.qty }} | {{ item.timestamp }}</option>
+        {% endfor %}
+      </select>
+      <input placeholder="Product" class="form-control" autofocus name="product">
+      <input placeholder="Quantity" class="form-control" name="qty">
+      <button class="btn btn-outline-secondary" type="submit">Update</button> 
+  </form>
+</div>
+
+<h4>Delete Inventory Item</h4>
+<form id="delete-form" action="/delete" method="POST">
+    <select name="to_edit">
+      {% for item in all_inventory_items %}
+        <option>{{ item.entry_id }} | {{ item.product_name }} | {{ item.qty }} | {{ item.timestamp }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-outline-secondary" type="submit">Delete</button> 
+</form>
+</div>
+
+
+  <div>  
+    <h4>Inventory</h4>
+      <table>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Timestamp</th>
+        </tr>
+        {% for item in all_inventory_items %}
+        <tr>
+          <td>{{item.product_name}}</td>
+          <td>{{item.qty}}</td>
+          <td>{{item.timestamp}}</td>
+        </tr>
+        {% endfor %}
+      </table>
   </div>
-  
+{% endif %}
+
+
 </body>
 </html>
