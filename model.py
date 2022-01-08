@@ -21,6 +21,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///inventory", echo=True):
 #                         primary_key=True,
 #                         autoincrement=True)
 #     product_name = db.Column(db.String(25))
+    
 
 #     entry = db.relationship("Entry", back_populates="product")
 
@@ -39,6 +40,7 @@ class Entry(db.Model):
                             nullable=False)
     qty = db.Column(db.Integer,
                     nullable=False)
+    # product_size = db.Column(db.String(10))
     timestamp = db.Column(db.DateTime)
 
     def __repr__(self):

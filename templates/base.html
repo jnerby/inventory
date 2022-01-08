@@ -15,8 +15,8 @@
   <div>
     <h4>Create Inventory Item(s)</h4>
     <form id="add-form" action="/create" method="POST">
-        <input placeholder="Product" class="form-control" autofocus name="product">
-        <input placeholder="Quantity" class="form-control" required name="qty">
+        <input placeholder="Product"  autofocus name="product">
+        <input placeholder="Quantity"  required name="qty">
         <button class="btn btn-outline-secondary" type="submit">Add</button> 
     </form>
   </div>
@@ -30,12 +30,12 @@
           <option>{{ item.entry_id }} | {{ item.product_name }} | {{ item.qty }} | {{ item.timestamp }}</option>
         {% endfor %}
       </select>
-      <input placeholder="Product" class="form-control" autofocus name="product">
-      <input placeholder="Quantity" class="form-control" name="qty">
+      <input placeholder="Product"  autofocus name="product">
+      <input placeholder="Quantity"  name="qty">
       <button class="btn btn-outline-secondary" type="submit">Update</button> 
   </form>
-</div>
 
+</div>
 <h4>Delete Inventory Item</h4>
 <form id="delete-form" action="/delete" method="POST">
     <select name="to_edit">
@@ -45,6 +45,30 @@
     </select>
     <button class="btn btn-outline-secondary" type="submit">Delete</button> 
 </form>
+</div>
+
+<div>
+<h4>Most In-Stock Inventory Report</h4>
+  <form id="report-form" action="/report" method="POST">
+    <label>Month</label>
+      <select name="report-month">
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+      </select>
+    <label>Year</label>
+      <input placeholder="Year" name="report-year" required>
+    <button class="btn btn-outline-secondary" type="submit">Generate Report</button> 
+  </form>  
 </div>
 
 

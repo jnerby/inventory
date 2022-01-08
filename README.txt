@@ -11,4 +11,7 @@ Considerations about how edits and updates should work.
 Ideally want one table just for initial entries, 
 
 
-additional feature = allow comments for deletion
+additional feature = Ability to generate a report on inventory levels over time, like: most in-stock or out-of-stock last month
+Ability to assign/remove inventory items to a named group/collection
+
+* seed some data to the db

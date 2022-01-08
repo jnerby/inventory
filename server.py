@@ -1,5 +1,6 @@
 import os
 import crud
+import helpers
 from flask import flash, Flask, jsonify, redirect, render_template, request
 from jinja2 import StrictUndefined
 from model import db, connect_to_db
@@ -40,11 +41,6 @@ def edit_inventory_item():
         edited_product_name = request.form['product']
         edited_qty = request.form['qty']
 
-        # if edited_product_name:
-        #     crud.edit_inventory_item_product_name(to_edit_id, edited_product_name)
-
-        # if edited_qty:
-        #     crud.edit_inventory_item_qty(to_edit_id, edited_qty)
         crud.edit_entry(to_edit_id, edited_product_name, edited_qty)
 
     return redirect('/')
@@ -57,6 +53,41 @@ def delete_inventory_item():
         to_edit_id = to_edit.split('|')[0].strip()
 
         crud.delete_entry(to_edit_id)
+
+    return redirect('/')
+
+
+@app.route('/report', methods=['POST'])
+def generate_monthly_inventory_report():
+    """Generates report for most in-stock items in a month/year"""
+    if request.method == 'POST':
+        # get month and year selected by user
+        report_month_name = request.form['report-month']
+        report_year = int(request.form['report-year'])
+
+        # get month value from month name
+        report_month = helpers.get_month_value(report_month_name)
+
+
+
+        # get inventory items for requested month and year
+        inventory_items = crud.get_inventory_by_month_year(report_month, report_year)
+        
+        helpers.generate_report_csv(inventory_items, report_month_name, report_year)
+
+        # get 
+        # product_counts = helpers.get_product_and_qty(inventory_items)
+
+        # # create_dictionary_for_csv
+        # sorted_product_counts = helpers.sort_inventory_by_count(product_counts)
+
+        # max_min_in_stock = helpers.get_max_min_in_inventory(sorted_product_counts)
+
+
+        # max = max_min_in_stock[0]
+        # min = max_min_in_stock[1]
+
+
 
     return redirect('/')
 
